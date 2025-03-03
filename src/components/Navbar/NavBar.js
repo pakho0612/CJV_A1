@@ -1,40 +1,34 @@
-import { Box, Button, Toolbar, Typography } from "@mui/material";
-import * as styles from '../../styles.js';
+import { Box, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 
 const pages = [
                 {
                     name:'Movies&TV', 
-                    link:'/movieTvListing'
-                },
-                {
-                    name:'my Vudu', 
-                    link:'/myvudu'
+                    link:'/listing'
                 }];
 
 function NavBar (){
     return(
         <>
-                <Box sx={styles.box}>
-                    {pages.map((page) => (
-                    <Button key={page.name} sx={styles.button} href={page.link}>
-                        <Typography variant="h6" noWrap component="a" sx={styles.typography}>
-                            {page.name}
-                        </Typography>
+            {pages.map((page) => (
+                <Box component={Link} to={page.link}>
+                    <Button sx={{ color: '#fff' }}>
+                        {page.name}
                     </Button>
-                ))}
                 </Box>
-                <Button key='Signin'sx={styles.button} href='/signin'>
-                    <Typography variant="h6" noWrap component="a" sx={styles.typography}>
-                            Sign in
-                    </Typography>
+            ))}
+            <Box sx={{ marginLeft: "auto" }} component={Link} to='/signup'>
+                <Button sx={{ color: '#fff' }}>
+                    Sign Up
                 </Button>
-                <Button key='Login' sx={styles.button} href='/login'>
-                    <Typography variant="h6" noWrap component="a" sx={styles.typography}>
-                            Log in
-                    </Typography>
+            </Box>
+            <Box  component={Link} to='/login'>
+                <Button  sx={{ color: '#fff' }}>
+                    Log In
                 </Button>
-                </>
+            </Box>
+        </>
     )
 }
 

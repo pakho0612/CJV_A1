@@ -1,31 +1,47 @@
-import './App.css';
-import Hero from './components/Hero/Hero';
-import Header from './Header';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import Hero from './components/Hero/Hero.js'
+import Featured from './pages/Featured.js';
+import Content from './components/Content/Content.js';
+import { Box } from '@mui/material';
+import {server} from './config.js';
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
-  },
-});
 
 function App() {
+  
+  const [ moviesTV, setMoviesTV] = useState([]);
+  const [ heroBanners, setHeroBanners] = useState([]);
+  window.scrollTo(0, 0);
+  useEffect(()=>{
+    const fetchData = async () => {
+        const response = await fetch(`${server}/moviesTv`);
+        const newData = await response.json();
+        setMoviesTV(newData);
+    };
+    fetchData();
+  }, []);
+  useEffect(()=>{
+    const fetchData = async () => {
+        const response = await fetch(`${server}/heroMovies`);
+        const newData = await response.json();
+        setHeroBanners(newData);
+    };
+    fetchData();
+  }, []);
   return (
-    <ThemeProvider theme={theme}>
-        <Header />
-        <Hero />
-    </ThemeProvider>
+    <Box >
+      <Box sx={{margin: "8px"}}>
+        <Hero moviesTV={heroBanners}/>
+      </Box>
+      <Box sx={{margin: "8px"}}>
+        <Featured title="Featured Movies" featuredList={moviesTV.filter((mv)=> (mv.featured === true && mv.type==="Movie"))}/>
+      </Box>
+      <Box sx={{margin: "8px"}}>
+        <Featured title="Featured TV" featuredList={moviesTV.filter((mv)=> (mv.featured === true && mv.type==="TV"))}/>
+      </Box>
+      <Box sx={{margin: "8px"}} >
+        <Content />
+      </Box>
+    </Box>
   );
 }
 
