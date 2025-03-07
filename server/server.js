@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3001
 const fs = require('fs')
-const data = JSON.parse(fs.readFileSync('./public/db.json', 'utf-8'))
+const data = JSON.parse(fs.readFileSync('db.json', 'utf-8'))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
