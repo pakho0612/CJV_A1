@@ -17,16 +17,16 @@
     "rewrites": [
       
       {
-        "src": "/(.*)",
-        "dest": "index.js"
+        "source": "/(.*)",
+        "destination": "index.js"
       },
       {
-        "src": "/moviesTv(.*)",
-        "dest": "server/server.js"
+        "source": "/moviesTv(.*)",
+        "destination": "server/server.js"
       },
       {
-        "src": "/heroMovies",
-        "dest": "server/server.js"
+        "source": "/heroMovies",
+        "destination": "server/server.js"
       }
     ]
   }
