@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, Card,CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { server } from "../config";
@@ -18,10 +18,17 @@ function Details(){
         fetchData();
       }, []);
     return(
-        <Box >
+        <Box sx={{  
+            backgroundImage:`url(https://img.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg)`,
+            backgroundRepeat: "repeat",
+            padding: 2}}>
             {
                 moviesTV!==undefined?(
-                    <Box >
+                    <Box display="flex"
+                    justifyContent="center"
+                    alignItems="center">
+                        
+    <Card sx={{ maxWidth: '75%' }}>
                         <Box padding={'10px'}>
                             <Button variant="text"onClick={()=>navigate(-1)}>Back</Button>
                         </Box>
@@ -120,6 +127,7 @@ function Details(){
                                 </Typography>
                             </Box>
                         </Box>
+                        </Card>
                     </Box>
                 ):(
                     <CircularProgress />

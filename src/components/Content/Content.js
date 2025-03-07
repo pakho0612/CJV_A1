@@ -4,8 +4,7 @@ function Content(){
     return(
         <Box sx={{  
             backgroundImage:`url(https://img.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg)`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+            backgroundRepeat: "repeat",
             backgroundColor: 'secondary.main', 
             padding: 2}}>
             <Typography 
