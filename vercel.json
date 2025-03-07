@@ -20,11 +20,7 @@
         "dest": "src/index.js"
       },
       {
-        "src": "/moviesTv(.*)",
-        "dest": "server/server.js"
-      },
-      {
-        "src": "/heroMovies",
+        "src": "/.*",
         "dest": "server/server.js"
       }
     ]
