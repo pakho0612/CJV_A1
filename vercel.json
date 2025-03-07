@@ -1,16 +1,32 @@
-{
-    "routes": [
+
+  {
+    "version": 2,
+    "builds": [
       {
-        "src": "/",
+        "src": "server/server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"
+        }
+      }
+    ],
+    "rewrites": [
+      
+      {
+        "src": "/(.*)",
         "dest": "index.js"
       },
       {
         "src": "/moviesTv(.*)",
-        "dest": "server.js"
+        "dest": "server/server.js"
       },
       {
         "src": "/heroMovies",
-        "dest": "server.js"
+        "dest": "server/server.js"
       }
     ]
   }
