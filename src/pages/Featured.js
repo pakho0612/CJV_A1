@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Card, CircularProgress, Grid, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Featured(props){
@@ -20,25 +20,26 @@ function Featured(props){
             </Typography>
         { 
         (
-            props.featuredList!==undefined)?(
+        props.featuredList!==undefined)?(
                 
-            <Grid container spacing={0.5}>
-                    {
-                        props.featuredList.map((mv, ind) => (
-                        <Grid item key={ind} sx={{
-                            flexGrow: 1,
-                            justifyContent: 'flex-end'}}>
-                            <Box component={Link} to={`/listing/${mv.id}`}>
-                            <img src={mv.smallPoster}
-                                alt={mv.title}
-                                loading="lazy"
-                                style={{ borderRadius: '8px' }}
-                            />
-                            </Box>
-                        </Grid>
-                        ))
-                    }
-            </Grid>
+            <Stack >
+                <Card sx={{ width: '90%', margin: '20px' }}>
+                    <Grid container spacing={0.5} justifyContent="center">
+                            {
+                                props.featuredList.map((mv, ind) => (
+                                <Grid item >
+                                    <Box component={Link} to={`/listing/${mv.id}`}>
+                                    <img src={mv.smallPoster}
+                                        alt={mv.title}
+                                        loading="lazy"
+                                        style={{ borderRadius: '8px' }}
+                                    /></Box>
+                                </Grid>
+                                ))
+                            }
+                    </Grid>
+                </Card>
+            </Stack>
         ):(
             <><CircularProgress />Loading</>
         )}

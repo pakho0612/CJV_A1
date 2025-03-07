@@ -10,7 +10,7 @@ function Footer() {
             marginTop: "auto"
         }} >
             <Grid container spacing={3} sx={{ flexGrow: 1 }}>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={6} sm={3}>
                     <Typography variant="h6" gutterBottom>
                         Watch
                     </Typography>
@@ -21,7 +21,7 @@ function Footer() {
                         Free<br />
                     </Typography>
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={6} sm={3}>
                     <Typography variant="h6" gutterBottom>
                         My Account
                     </Typography>
@@ -31,7 +31,7 @@ function Footer() {
                         Manage Devices<br />
                     </Typography>
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={6} sm={3}>
                     <Typography variant="h6" gutterBottom>
                         Features
                     </Typography>
@@ -43,7 +43,7 @@ function Footer() {
                         Movies Anywhere<br />
                     </Typography>
                 </Grid>
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={6} sm={3}>
                     <Typography variant="h6" gutterBottom>
                         Help
                     </Typography>

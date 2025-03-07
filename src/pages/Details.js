@@ -28,7 +28,7 @@ function Details(){
                     justifyContent="center"
                     alignItems="center">
                         
-    <Card sx={{ maxWidth: '75%' }}>
+                <Card sx={{ width: '75%' }}>
                         <Box padding={'10px'}>
                             <Button variant="text"onClick={()=>navigate(-1)}>Back</Button>
                         </Box>

@@ -14,7 +14,7 @@ app.get('/moviesTv', (req, res) => {
     res.send(data.moviesTv);
 })
 app.get('/moviesTv/:id', (req, res) => {
-    res.send(data.moviesTv[req.params.id]);
+    res.send(data.moviesTv.find((ele)=>ele.id===parseInt(req.params.id)));
 })
 app.get('/heroMovies', (req, res) => {
     res.send(data.heroMovies);

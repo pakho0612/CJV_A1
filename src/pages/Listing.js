@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, ImageList, Skeleton, Stack } from "@mui/material";
+import { Box, Card, CircularProgress, Grid, ImageList, Skeleton, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { server } from "../config";
@@ -21,23 +21,25 @@ function Listing(){
           backgroundImage:`url(https://img.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg)`,
           backgroundRepeat: "repeat",
           minHeight: '80vh'}}>
-          <Grid container spacing={2}>
-              {moviesTV.map((item, ind) => (
-                <Grid item key={ind} sx={{
-                  flexGrow: 1,
-                  justifyContent: 'flex-end'}}>
-                  <Link to={`/listing/${item.id}`}>
-                    <Box key={item.id} 
-                      component={"img"}
-                        src={item.smallPoster}
-                        alt={item.title}
-                        style={{ borderRadius: '8px' }}>
-                          
-                    </Box>
-                  </Link>
-                </Grid>
-              ))}
-        </Grid>
+          <Stack alignItems="center">
+            <Card sx={{ width: '90%', margin: '20px' }}>
+              <Grid container spacing={1} justifyContent="center">
+                  {moviesTV.map((item, ind) => (
+                    <Grid item key={ind}>
+                      <Link to={`/listing/${item.id}`}>
+                        <Box key={item.id} 
+                          component={"img"}
+                            src={item.smallPoster}
+                            alt={item.title}
+                            style={{ borderRadius: '8px' }}>
+                              
+                        </Box>
+                      </Link>
+                    </Grid>
+                  ))}
+            </Grid>
+            </Card>
+          </Stack>
         </Box>
       ) : (
         <Grid container spacing={3} sx={{ flexGrow: 1 }}>

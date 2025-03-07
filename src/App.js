@@ -6,9 +6,6 @@ import { Box } from '@mui/material';
 import {server} from './config.js';
 
 
-const response = await fetch("http://127.0.0.1:3001/heroMovies");
-const newData = await response.json();
-console.log(newData);
 function App() {
   
   const [ moviesTV, setMoviesTV] = useState([]);
