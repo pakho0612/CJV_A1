@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function Featured(props){
@@ -21,19 +21,24 @@ function Featured(props){
         { 
         (
             props.featuredList!==undefined)?(
-                <Box display="grid" gridTemplateColumns={`repeat(${props.featuredList.length}, 1fr)`} gap={2}>
+                
+            <Grid container spacing={0.5}>
                     {
-                        props.featuredList.map((mv) => (
+                        props.featuredList.map((mv, ind) => (
+                        <Grid item key={ind} sx={{
+                            flexGrow: 1,
+                            justifyContent: 'flex-end'}}>
                             <Box component={Link} to={`/listing/${mv.id}`}>
                             <img src={mv.smallPoster}
                                 alt={mv.title}
                                 loading="lazy"
-                                style={{ width: '100%', borderRadius: '8px' }}
+                                style={{ borderRadius: '8px' }}
                             />
                             </Box>
+                        </Grid>
                         ))
                     }
-                </Box>
+            </Grid>
         ):(
             <><CircularProgress />Loading</>
         )}

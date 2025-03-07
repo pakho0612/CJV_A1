@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, ImageList, Skeleton } from "@mui/material";
+import { Box, CircularProgress, Grid, ImageList, Skeleton, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { server } from "../config";
@@ -21,19 +21,23 @@ function Listing(){
           backgroundImage:`url(https://img.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg)`,
           backgroundRepeat: "repeat",
           minHeight: '80vh'}}>
-        <Box display="grid" gridTemplateColumns="repeat(6, 1fr)" m={2} gap={2}>
-              {moviesTV.map((item) => (
-                <Box key={item.id} component={Link}
-                    to={`/listing/${item.id}`}>
-                      <img
+          <Grid container spacing={2}>
+              {moviesTV.map((item, ind) => (
+                <Grid item key={ind} sx={{
+                  flexGrow: 1,
+                  justifyContent: 'flex-end'}}>
+                  <Link to={`/listing/${item.id}`}>
+                    <Box key={item.id} 
+                      component={"img"}
                         src={item.smallPoster}
                         alt={item.title}
-                        loading="lazy"
-                        style={{ width: '100%', borderRadius: '8px' }}
-                      />
-                </Box>
+                        style={{ borderRadius: '8px' }}>
+                          
+                    </Box>
+                  </Link>
+                </Grid>
               ))}
-        </Box>
+        </Grid>
         </Box>
       ) : (
         <Grid container spacing={3} sx={{ flexGrow: 1 }}>
