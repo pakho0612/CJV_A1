@@ -15,7 +15,7 @@
       
       {
         "source": "/(.*)",
-        "destination": "index.js"
+        "destination": "src/index.js"
       },
       {
         "source": "/moviesTv(.*)",
