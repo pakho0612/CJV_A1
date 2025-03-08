@@ -1,10 +1,8 @@
 {
-  "version": 2,
   "routes": [
     {
       "src": "/(.*)",
       "dest": "/api/index.js"   //path to my server file.
     }
   ]
-  
 }
