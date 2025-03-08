@@ -3,10 +3,6 @@
     "version": 2,
     "builds": [
       {
-        "src": "server/server.js",
-        "use": "@vercel/node"
-      },
-      {
         "src": "package.json",
         "use": "@vercel/static-build",
         "config": {
@@ -17,11 +13,11 @@
     "routes": [
       {
         "src": "/moviesTv/(.*)",
-        "dest": "server.js"
+        "dest": "api/server.js"
       },
       {
         "src": "/heroMovies(.*)",
-        "dest": "server/server.js"
+        "dest": "api/server.js"
       }
     ]
   }
