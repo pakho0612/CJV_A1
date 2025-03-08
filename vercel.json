@@ -14,14 +14,5 @@
         }
       }
     ],
-    "routes": [
-      {
-        "src": "/moviesTv/(.*)",
-        "dest": "api/server.js"
-      },
-      {
-        "src": "/heroMovies(.*)",
-        "dest": "api/server.js"
-      }
-    ]
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
   }
