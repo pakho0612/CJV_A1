@@ -13,7 +13,7 @@ function App() {
   window.scrollTo(0, 0);
   useEffect(()=>{
     const fetchData = async () => {
-        const response = await fetch(`${server}/moviesTv`);
+        const response = await fetch(`${server}/api/moviesTv`);
         const newData = await response.json();
         setMoviesTV(newData);
     };
@@ -21,7 +21,7 @@ function App() {
   }, []);
   useEffect(()=>{
     const fetchData = async () => {
-        const response = await fetch(`${server}/heroMovies`);
+        const response = await fetch(`${server}/api/heroMovies`);
         const newData = await response.json();
         setHeroBanners(newData);
     };

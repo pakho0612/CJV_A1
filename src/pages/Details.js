@@ -11,7 +11,7 @@ function Details(){
     useEffect(()=>{
         window.scrollTo(0, 0);
         const fetchData = async () => {
-            const response = await fetch(`${server}/moviesTv/${movieID}`);
+            const response = await fetch(`${server}/api/moviesTv/${movieID}`);
             const newData = await response.json();
             setMoviesTV(newData);
         };

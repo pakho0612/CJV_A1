@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 3001
 const fs = require('fs')
-const data = JSON.parse(fs.readFileSync('db.json', 'utf-8'))
+const data = JSON.parse(fs.readFileSync('./db.json', 'utf-8'))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
@@ -10,13 +10,13 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/moviesTv', (req, res) => {
+app.get('/api/moviesTv', (req, res) => {
     res.send(data.moviesTv);
 })
-app.get('/moviesTv/:id', (req, res) => {
+app.get('/api/moviesTv/:id', (req, res) => {
     res.send(data.moviesTv.find((ele)=>ele.id===parseInt(req.params.id)));
 })
-app.get('/heroMovies', (req, res) => {
+app.get('/api/heroMovies', (req, res) => {
     res.send(data.heroMovies);
 })
 
