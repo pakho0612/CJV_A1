@@ -8,10 +8,6 @@
         "config": {
           "includeFiles": ["./api/db.json"]
         }
-      },
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build"
       }
     ],
     "rewrites": [{ "source": "/api/.*", "destination": "/api/index.js" }]
