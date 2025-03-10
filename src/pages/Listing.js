@@ -8,7 +8,7 @@ function Listing(){
     const [moviesTV, setMoviesTV] = useState([]);
     useEffect(()=>{
         const fetchData = async () => {
-            const response = await fetch(`${server}/moviesTv`);
+            const response = await fetch(`${server}/api/moviesTv`);
             const newData = await response.json();
             setMoviesTV(newData);
         };

@@ -3,7 +3,7 @@ import Hero from './components/Hero/Hero.js'
 import Featured from './pages/Featured.js';
 import Content from './components/Content/Content.js';
 import { Box } from '@mui/material';
-const server= "http://localhost:3001";
+import {server} from './config.js';
 function App() {
   
   const [ moviesTV, setMoviesTV] = useState([]);
