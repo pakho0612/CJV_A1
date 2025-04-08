@@ -1,18 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Box, TextField, Button, Typography } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { userContext } from '../Layout';
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {loggedIn, setLoggedIn} = useContext(userContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle login logic here
+        fetch(`${process.env.REACT_APP_WEB_SERVER_URL}/auth`,
+            {
+                method:'POST',
+                body:JSON.stringify({ email, password }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        ).then(async res => {
+            const serverRes = await res.json();
+            if(res.status==200){
+                const user = serverRes.body[0];
+                sessionStorage.setItem('user', JSON.stringify({ id:user.id }));
+                setLoggedIn(true);
+                navigate('/user');
+            }
+            else{
+                alert(serverRes.message);
+            }
+        })
         console.log({ email, password });
-    };
-
-    const handleSignUpRedirect = () => {
-        
     };
 
     return (
@@ -32,6 +51,7 @@ function Login() {
             </Typography>
             <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '400px' }}>
                 <TextField 
+                    required
                     label="Email" 
                     variant="outlined" 
                     fullWidth 
@@ -40,6 +60,7 @@ function Login() {
                     onChange={(e) => setEmail(e.target.value)} 
                 />
                 <TextField 
+                    required
                     label="Password" 
                     type="password" 
                     variant="outlined" 
@@ -57,15 +78,16 @@ function Login() {
                 >
                     Login
                 </Button>
-                <Button 
-                    variant="text" 
-                    color="primary" 
-                    fullWidth 
-                    sx={{ marginTop: '10px' }} 
-                    onClick={handleSignUpRedirect}
-                >
-                    Sign Up
-                </Button>
+                <Box  component={Link} to='/signup' >
+                    <Button 
+                        variant="text" 
+                        color="primary" 
+                        fullWidth 
+                        sx={{ marginTop: '10px' }} 
+                    >
+                        Sign Up
+                    </Button>
+                </Box>
             </form>
         </Box>
     );
