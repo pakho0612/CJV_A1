@@ -1,19 +1,18 @@
 import { Box, Button, Card,CircularProgress, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { server } from "../config";
 
 function Details(){
     const movieID = useParams().id;
-    const [ moviesTV, setMoviesTV] = useState();
+    const [ moviesTV, setMoviesTV] = useState([]);
     const navigate = useNavigate();
       
     useEffect(()=>{
         window.scrollTo(0, 0);
         const fetchData = async () => {
-            const response = await fetch(`${server}/api/moviesTv/${movieID}`);
+            const response = await fetch(`${process.env.REACT_APP_WEB_SERVER_URL}/movieTv?id=${movieID}`);
             const newData = await response.json();
-            setMoviesTV(newData);
+            setMoviesTV(newData.body);
         };
         fetchData();
       }, []);
@@ -23,7 +22,8 @@ function Details(){
             backgroundRepeat: "repeat",
             padding: 2}}>
             {
-                moviesTV!==undefined?(
+                moviesTV.length>0?(
+                    moviesTV.map((moviesTV, ind) => (
                     <Box display="flex"
                     justifyContent="center"
                     alignItems="center">
@@ -129,7 +129,7 @@ function Details(){
                         </Box>
                         </Card>
                     </Box>
-                ):(
+                ))):(
                     <CircularProgress />
                 )
             }

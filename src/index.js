@@ -9,6 +9,7 @@ import Layout from './Layout';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Listing from './pages/Listing';
+import Dashboard from './pages/Dashboard';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,10 +18,12 @@ root.render(
       <Layout>
         <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/listing" element={<Listing />} />
             <Route path="/listing/:id" element={<Details />} />
+            <Route path="/listing/movies" element={<Listing key={"movies"} category='movies'/>} />
+            <Route path="/listing/TVs" element={<Listing key={"TVs"} category='TVs'/>} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/user" element={<Dashboard />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
