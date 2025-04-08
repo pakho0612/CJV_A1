@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Listing from './pages/Listing';
 import Dashboard from './pages/Dashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,7 +24,11 @@ root.render(
             <Route path="/listing/TVs" element={<Listing key={"TVs"} category='TVs'/>} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/user" element={<Dashboard />} />
+            <Route path="/user" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+             } />
             <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

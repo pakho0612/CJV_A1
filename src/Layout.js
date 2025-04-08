@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import { Box, createTheme } from "@mui/material";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const userContext = createContext({
     loggedIn:false
@@ -10,6 +10,13 @@ export const userContext = createContext({
 
 function Layout({children}){
     const [loggedIn, setLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+    useEffect(()=>{
+        if (sessionStorage.getItem('user')){
+            setLoggedIn(true);
+        }
+        setLoading(false);
+    },[]);
     const theme = createTheme({
     palette: {
         backgroundColor:'#3a393a',
@@ -26,7 +33,7 @@ function Layout({children}){
     });
     return (
         <ThemeProvider theme={theme} >
-            <userContext.Provider value={{loggedIn, setLoggedIn}}>
+            <userContext.Provider value={{loggedIn, setLoggedIn, loading}}>
                 <Header />
                 <Box>
                     {children}
